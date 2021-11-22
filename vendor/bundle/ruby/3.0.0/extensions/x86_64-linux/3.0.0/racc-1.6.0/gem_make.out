@@ -1,0 +1,17 @@
+current directory: /home/carl/Desktop/recipeApp/vendor/bundle/ruby/3.0.0/gems/racc-1.6.0/ext/racc/cparse
+/home/carl/.rbenv/versions/3.0.2/bin/ruby -I /home/carl/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20211122-24758-u1qeyq.rb extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/carl/Desktop/recipeApp/vendor/bundle/ruby/3.0.0/gems/racc-1.6.0/ext/racc/cparse
+make DESTDIR\= clean
+
+current directory: /home/carl/Desktop/recipeApp/vendor/bundle/ruby/3.0.0/gems/racc-1.6.0/ext/racc/cparse
+make DESTDIR\=
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/carl/Desktop/recipeApp/vendor/bundle/ruby/3.0.0/gems/racc-1.6.0/ext/racc/cparse
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20211122-24758-zs655i/racc
