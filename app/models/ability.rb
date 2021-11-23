@@ -16,7 +16,10 @@ class Ability
         end
 
         cannot :destroy, Recipe do |recipe|
-        recipe.user_id == user.id
+        recipe.user_id != user.id
+
+        can :create, Recipe do |recipe|
+          recipe.public == true || recipe.user_id == user.id
       end
       end
     #
