@@ -12,20 +12,20 @@ class FoodsController < ApplicationController
   def new
     @food = Food.new
   end
-   
+
   def create
     @food = Food.new(food_params)
 
-    if @food.save 
+    if @food.save
       redirect_to @Food
     else
       render :new
     end
   end
 
-private
+  private
 
-def food_params
-  params.require(:food).permit(:name, :measurement_unit, :price)
-end
+  def food_params
+    params.require(:food).permit(:name, :measurement_unit, :price)
+  end
 end
