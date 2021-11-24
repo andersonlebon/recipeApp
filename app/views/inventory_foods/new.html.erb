@@ -1,0 +1,15 @@
+<%= form_with model: InventoryFood.new, :url => {:action => :create, :controller => :inventory_foods}, class:"post-form" do |form| %>
+  <h1>New Inventory</h1>
+  <div>
+    <%= form.label :food %>
+    <%= form.select :food_id, @foods.map { |t| [t.name, t.id]}, {}, class: "form-control" %>
+   
+    
+  <div>
+  <div>
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, min: 1 %>
+  <div>
+
+  <%= form.submit "Save", class:"btn btn-primary" %>
+  <% end %>
