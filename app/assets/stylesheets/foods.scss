@@ -4,6 +4,7 @@
 
 .new-food {
   font-size: 14px;
+
   form {
     display: flex;
     flex-direction: column;
@@ -11,6 +12,7 @@
     margin: 40px 0;
     padding: 40px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
     input {
       height: 35px;
     }
