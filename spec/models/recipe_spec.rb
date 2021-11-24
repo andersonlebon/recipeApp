@@ -26,4 +26,16 @@ RSpec.describe Recipe, type: :model do
         @recipe.recipe_foods << @recipe_food    
         expect(@recipe.recipe_foods).to eq([@recipe_food])
         end
+    # the food should be destroyed when the recipe is destroyed
+    it 'destroys the food when the recipe is destroyed' do
+        # has many recipe_foods
+        @food = Food.new(name: 'Test Food', measurement_unit: 'kilo', price: 100, user: @user)
+        @recipe_food = RecipeFood.new(recipe: @recipe, food: @food)
+        @recipe.recipe_foods << @recipe_food    
+        # destroy the recipe
+        @recipe.destroy
+        # the recipe_food should be destroyed
+        expect(@recipe.destroyed?).to eq(true)
+        end
+    
 end
