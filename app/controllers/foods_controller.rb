@@ -11,12 +11,11 @@ class FoodsController < ApplicationController
   end
 
   def new
-    @food = Food.new
+    @food = current_user.foods.new
   end
 
   def create
-    @food = Food.new(food_params)
-
+    @food = current_user.foods.create(food_params)
     if @food.save
       redirect_to @Food
     else
