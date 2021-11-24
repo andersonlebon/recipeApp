@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 # write test for all User modul methods
 RSpec.describe User, type: :model do
@@ -21,7 +19,6 @@ RSpec.describe User, type: :model do
   it 'is not valid without a password less than 6 characters' do
     @user.password = 'a' * 5
     expect(@user).to_not be_valid
-  
   end
   it 'is valid with a name, an email, and a password' do
     expect(@user).to be_valid
