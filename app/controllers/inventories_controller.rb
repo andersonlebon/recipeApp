@@ -20,6 +20,12 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def show
+    @inventory = Inventory.find(params[:id])
+    @inventory_foods = @inventory.inventory_foods
+    @arr = @inventory_foods.map { |inv_food| inv_food.food_id }
+    @foods = current_user.foods.joins(:inventory_foods).where(id: @arr).uniq
+  end
   
 
   def destroy
