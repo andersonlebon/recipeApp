@@ -1,1 +1,14 @@
 <h1>Inventories page</h1>
+<ul>
+  <% @inventories.each do |inventory| %>
+   <li>
+    <div>
+      <h2><%= inventory.name%><h2>
+      <% if can? :destroy, inventory %>
+        <%= link_to 'Remove', { :controller=>:inventories,:action=>:destroy, :id=>inventory.id }, :method=>:delete, class:'btn btn-danger' %>
+      <% end %>
+    </div>
+      <p><%= inventory.description %><h2>
+   </li> 
+   <% end %>
+  </ul>
