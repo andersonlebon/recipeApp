@@ -1,12 +1,12 @@
-<h1>Inventories page</h1>
-<%= link_to 'Create new inventory', new_user_inventory_path(params[:user_id]), class:'btn btn-success btn-sm' %>
-<ul>
+<div class="container d-flex flex-column p-2">
+<%= link_to 'Create new inventory', new_user_inventory_path(params[:user_id]), class:'btn btn-success btn-sm align-self-end' %>
+<ul class="d-flex flex-column">
   <% @inventories.each do |inventory| %>
-   <li class="d-flex align-items-center">
+   <li class="d-flex  border border-secondary mt-2 mb-2 p-3 rounded">
    
-    <div>
+    <div class="d-flex flex-column align-items-center mr-2 w-25">
      <%= link_to user_inventory_path(inventory.user.id, inventory.id) do %>
-      <h2><%= inventory.name%><h2>
+      <h2 class="nav-link"><%= inventory.name%></h2>
      <% end %>
 
       <% if can? :destroy, inventory %>
@@ -14,7 +14,8 @@
       <% end %>
 
     </div>
-      <p><%= inventory.description %><h2>
+      <p class="align-self-start p-3 w-75"><%= inventory.description %><h2>
    </li> 
    <% end %>
   </ul>
+<div>
