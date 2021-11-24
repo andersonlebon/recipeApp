@@ -1,5 +1,11 @@
-<section class="d-flex flex-column">
-    <table class="table table-striped table-bordered table-sm table-hover mx-auto w-75 my-5">
+<section class="d-flex mx-auto p-5 w-75 flex-column align-items-center">
+    <div class=" align-self-end">
+        <%= link_to new_user_food_path(@user.id) do%>
+            <button class="btn btn-primary">Add Food</button>
+        <% end %>
+    </div>
+
+    <table class="table table-striped table-bordered table-sm table-hover my-5">     
         <thead>
 
             <th scope="col">Foods</th>
@@ -11,7 +17,7 @@
         <tbody>
 
             <% @foods.each do |food| %>
-                <% render 'food', food: food %>
+                <% render 'table_row', food: food %>
             <% end %>
         </tbody>
     </table>

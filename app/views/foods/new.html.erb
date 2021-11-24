@@ -1,0 +1,21 @@
+<section class="new-food">
+ <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+    <div class="form-outline mb-4">
+        <%= form.label :name %><br />
+        <%= form.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
+
+    <div class="form-outline mb-4">
+        <%= form.label :"Measurement unit" %><br />
+        <%= form.text_field :measurement_unit, autofocus: true, autocomplete: "measurement_unit" %>
+    </div>
+
+    <div class="form-outline mb-4">
+        <%= form.label :"Measurement unit" %><br />
+        <%= form.number_field :price, in: 1.0..20.0, step: 0.5 %>
+    </div>
+  <%= form.submit "Add new food", class: "btn btn-primary" %>
+  </div> 
+   <% end %> 
+
+</section>
