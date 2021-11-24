@@ -19,6 +19,15 @@ class InventoriesController < ApplicationController
       render :new
     end
   end
+
+  
+
+  def destroy
+    @inventory = Inventory.find(params[:id])
+    @inventory.destroy
+
+    redirect_to user_inventories_path, alert: 'Inventory deleted succesfully'
+  end
   
 private
 
