@@ -9,10 +9,8 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      cannot :destroy, Inventory do |inventory|
-        inventory.user_id != user.id
-      end
-
+      can :manage, Inventory, user_id: user.id
+      
       cannot :destroy, Recipe do |recipe|
         recipe.user_id != user.id
       end
