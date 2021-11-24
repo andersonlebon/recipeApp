@@ -1,3 +1,36 @@
 // Place all the styles related to the foods controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.new-food {
+  font-size: 14px;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 40px 0;
+    padding: 40px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    input {
+      height: 35px;
+    }
+  }
+
+  label {
+    color: rgb(77, 77, 77);
+    margin: 5px 0;
+  }
+
+  .btn-submit {
+    font-size: 14px;
+  }
+}
+
+.foods {
+  table {
+    tr {
+      td {
+        padding: 0 5px;
+      }
+    }
+  }
+}
