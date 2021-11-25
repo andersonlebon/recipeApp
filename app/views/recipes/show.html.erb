@@ -22,7 +22,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6 my-5">
-                  <%= link_to "Generate Shopping list", general_shopping_list_path(id: @recipe), class: "btn btn-primary" %>
+                  <button type="button" class="btn btn-primary btn-lg" id="shop">Generate Shopping list</button>
                 </div>
                 <div class="col-md-6 my-5">
                   <% if can? :update, @recipe %> 
@@ -60,5 +60,25 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- The Modal modal javascript is in app/asset/javascript/custom-->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4 class="text-center my-3">Generating Shopping list</h4>
+      <h4>Select an inventory to use</h4>
+              <%= form_with model: @recipe, url: shopping_list_path do |form| %>
+          <div class="field">
+            <div class="select-option">
+              <%= form.select :inventory_id, current_user.inventories.collect {|inventory| [inventory.name, inventory.id] }, { include_blank: true} %>
+            </div>
+          </div>
+        
+        <div class="modal-footer">
+          <%= form.submit "Generate", class: "btn btn-primary mt-3" %>
+      <% end %>
   </div>
 </div>
