@@ -6,7 +6,7 @@ class InventoriesController < ApplicationController
   end
 
   def new
-    @inventory = Inventory.new  
+    @inventory = Inventory.new
   end
 
   def create
@@ -23,10 +23,9 @@ class InventoriesController < ApplicationController
   def show
     @inventory = Inventory.find(params[:id])
     @inventory_foods = @inventory.inventory_foods
-    @arr = @inventory_foods.map { |inv_food| inv_food.food_id }
+    @arr = @inventory_foods.map(&:food_id)
     @foods = current_user.foods.joins(:inventory_foods).where(id: @arr).uniq
   end
-  
 
   def destroy
     @inventory = Inventory.find(params[:id])
@@ -34,10 +33,10 @@ class InventoriesController < ApplicationController
 
     redirect_to user_inventories_path, alert: 'Inventory deleted succesfully'
   end
-  
-private
 
-def inventory_params
-  params.require(:inventory).permit(:name, :description) 
-end
+  private
+
+  def inventory_params
+    params.require(:inventory).permit(:name, :description)
+  end
 end
