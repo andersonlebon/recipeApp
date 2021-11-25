@@ -1,0 +1,19 @@
+<div class="container border mt-4">
+  <h2 class="title has-text-centered my-4">
+   Public Recipes
+  </h2>
+  <% @recipes.each do |recipe| %>
+    <div class="row justify-content-md-center my-4">
+      <div class="row w-50">
+        <div class="col-md-6 p-2">
+          <h2><%= link_to recipe.name, user_recipe_path(current_user, recipe), class: "text-decoration-none" %></h2>
+          <p>By: <%= recipe.user.name %></p>
+        </div>
+        <div class="col-md-6 p-2">
+        <p>Total food items: <%= recipe.recipe_foods.size %></p>
+        <p>Total price: <%= number_to_currency(recipe.total_price)%></p>
+        </div>
+    </div>
+   </div>
+    <% end %>
+</div>
