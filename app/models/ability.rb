@@ -12,14 +12,10 @@ class Ability
       cannot :destroy, Inventory do |inventory|
         inventory.user_id != user.id
       end
+      can :update, :all
+      can :manage, Recipe, user: user
 
-      cannot :destroy, Recipe do |recipe|
-        recipe.user_id != user.id
-      end
-
-      can :read, Recipe do |recipe|
-        recipe.public == true || recipe.user_id == user.id
-      end
+      can :manage, Food, user: user
     end
   end
 end
