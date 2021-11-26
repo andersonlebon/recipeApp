@@ -10,7 +10,7 @@
      <% end %>
 
       <% if can? :destroy, inventory %>
-        <%= link_to 'Remove', { :controller=>:inventories,:action=>:destroy, :id=>inventory.id }, :method=>:delete, class:'btn btn-outline-danger btn-sm mt-2' %>
+        <%= button_to 'Remove', { :controller => :inventories, :action => :destroy, :id=> inventory.id }, method: :delete, class:'btn btn-outline-danger btn-sm mt-2' %>
       <% end %>
 
     </div>

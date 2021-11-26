@@ -20,7 +20,7 @@
           <td><%= inventory_food[0].quantity %> <%= food.measurement_unit %></td>
           <td>
             <% if can? :destroy, InventoryFood %>
-              <%= link_to 'Remove', user_inventory_path(params[:user_id], params[:id])+'/inventory_foods/'+inventory_food[0].id.to_s, method: :delete, class:'btn btn-danger btn-sm' %>
+              <%= button_to 'Remove', user_inventory_path(params[:user_id], params[:id])+'/inventory_foods/'+inventory_food[0].id.to_s, method: :delete, class:'btn btn-danger btn-sm' %>
               <% end %>
           </td>
         </tr>
