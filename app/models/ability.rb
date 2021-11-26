@@ -12,7 +12,8 @@ class Ability
       cannot :destroy, Inventory do |inventory|
         inventory.user_id != user.id
       end
-      can :update, :all
+      can :edit, Recipe, user: user
+      can :update, Recipe, user: user
       can :manage, Recipe, user: user
 
       can :manage, Food, user: user

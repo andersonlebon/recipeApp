@@ -70,15 +70,6 @@
     <span class="close">&times;</span>
     <h4 class="text-center my-3">Generating Shopping list</h4>
       <h4>Select an inventory to use</h4>
-              <%= form_with model: @recipe, url: shopping_list_path do |form| %>
-          <div class="field">
-            <div class="select-option">
-              <%= form.select :inventory_id, current_user.inventories.collect {|inventory| [inventory.name, inventory.id] }, { include_blank: true} %>
-            </div>
-          </div>
-        
-        <div class="modal-footer">
-          <%= form.submit "Generate", class: "btn btn-primary mt-3" %>
-      <% end %>
+              
   </div>
 </div>
