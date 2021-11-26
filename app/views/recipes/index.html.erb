@@ -1,5 +1,6 @@
-<div class="px-4 "><%= link_to 'Create a new Recipe', new_user_recipe_path, class: "btn btn-primary btn-sm btn-block my-3" %></div>
-<div class="container h-100 w-75">
+<section class="flex-column d-flex  w-75 m-auto mt-3">
+<div class="align-self-end mx-5 my-3"><%= link_to 'Create a new Recipe', new_user_recipe_path, class: "btn btn-primary btn-sm btn-block my-1" %></div>
+<div class="container h-100">
 
   <div class="columns is-flex-direction-column is-align-items-center">
     <% @recipes.each do |recipe| %>
@@ -7,5 +8,6 @@
     <% end %>
   </div>
 </div>
+</section>
 
 
