@@ -33,29 +33,30 @@
               <div class="border-top border-secondary">
               </div>
               <br/>
-              <table class="flex-row">
-              <% if @recipe.recipe_foods.any? %>
-                  <tr>
-                    <th>Food</th>
-                    <th>Quantity</th>
-                    <th>Value</th>
-                    <th>Actions</th>
+              <table class="table table-striped table-hover table-bordered align-middle table-sm my-5">     
+              <thead class="table-dark">
+
+                  <th scope="col">Foods</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Actions</th>
                   </tr>
-                <% end %>
-                <% @recipe.recipe_foods.each do |food| %>
+              </thead>
+              <tbody>
+
+                <% @recipe_foods.each do |recipe_food| %>
                   <tr>
-                    <td><%= food.food.name%></td>
-                    <td><%= food.quantity%> <%= food.food.measurement_unit%></td>
-                    <td><%= number_to_currency(food.food.price*food.quantity)%></td>
-                    <td>
-                      <% if can? :update,  @recipe %>
-                        <%= link_to "Modify", edit_user__recipe_food_path(food)%>
-                        <%= link_to "Delete", user_recipe_recipe_food_path(recipe_id: @recipe.id, id: food.id), method: :delete, data: { confirm: "Are you sure you want to remove the food?" } %>
-                      <% end %>
+                    <td><%= recipe_food.food.name %></td>
+                    <td><%= recipe_food.quantity %><%= recipe_food.food.measurement_unit %></td>
+                    <td><%= number_to_currency((recipe_food.food.price).to_i * (recipe_food.quantity).to_i)%></td>
+                    <td class="d-flex justify-content-center">
+                        <%= button_to "Delete", user_recipe_recipe_food_path(current_user, @recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: "r-food-btn btn btn-danger" %>
+                        <%= link_to "Edit", edit_user_recipe_recipe_food_path(current_user, @recipe, recipe_food), class: "btn btn-primary mx-2 r-food-btn" %>
                     </td>
                   </tr>
-                <% end %>
-              </table>
+                  <% end %>
+              </tbody>
+          </table>
             </div>
           </div>
         </div>
@@ -71,13 +72,12 @@
     <span class="close">&times;</span>
     <h4 class="text-center my-3">Generating Shopping list</h4>
       <h4>Select an inventory to use</h4>
-             <%= form_with  url: user_shopping_list_index_path, method: :get do |form| %>
-                <%= form.hidden_field :recipe_id, :value => params[:id] %>
-                <div class="field">
-                  <div class="select-option">
-                    <%= form.select :inventory_id, @inventories.map { |t| [t.name, t.id]}, {}, class: 'form-control mb-3 mt-3', placeholder:'Inventory name' %>
-                  </div>
-                </div>
+             <%= form_with model: @recipe, url: user_shopping_list_index_path+"?recipe_id=#{params[:id]}&inventory_id=1" do |form| %>
+          <div class="field">
+            <div class="select-option">
+              <%= form.select :inventory_id, @inventories.map { |t| [t.name, t.id]}, {}, class: 'form-control mb-3 mt-3', placeholder:'Inventory name' %>
+            </div>
+          </div>
         
         <div class="modal-footer">
           <%= form.submit "Generate", class: "btn btn-success mt-3" %>

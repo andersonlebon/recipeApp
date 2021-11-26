@@ -6,10 +6,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+
   end
 
   def show
     @recipe = Recipe.where(id: params[:id]).includes(:recipe_foods).take
+    @recipe_foods = @recipe.recipe_foods
     @inventories = current_user.inventories.all
   end
 

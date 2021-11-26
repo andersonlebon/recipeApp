@@ -1,5 +1,5 @@
 <div class="container py-5 h-100">
-  <%= form_with model: @recipe, url: new_user_recipe_recipe_food_path do |form| %>
+  <%= form_with model: @recipe_food, url: { action: "create" } do |form| %>
     <div class="field">
       <%= form.label :food, class: "" %>
       <div class="select-option">
