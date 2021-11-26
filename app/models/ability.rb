@@ -17,7 +17,6 @@ class Ability
       can :manage, Inventory, user_id: user.id
       can :manage, InventoryFood, user_id: user.id
 
-
       can :manage, Food, user: user
     end
   end

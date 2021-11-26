@@ -72,8 +72,9 @@
     <span class="close">&times;</span>
     <h4 class="text-center my-3">Generating Shopping list</h4>
       <h4>Select an inventory to use</h4>
-             <%= form_with model: @recipe, url: user_shopping_list_index_path+"?recipe_id=#{params[:id]}&inventory_id=1" do |form| %>
-          <div class="field">
+             <%= form_with  url: user_shopping_list_index_path, method: :get do |form| %>
+             <%= form.hidden_field :recipe_id, :value => params[:id] %>
+             <div class="field">
             <div class="select-option">
               <%= form.select :inventory_id, @inventories.map { |t| [t.name, t.id]}, {}, class: 'form-control mb-3 mt-3', placeholder:'Inventory name' %>
             </div>

@@ -1,4 +1,3 @@
-
 # rubocop:disable Metrics/MethodLength
 class ShoppingListController < ApplicationController
   def index
@@ -28,5 +27,4 @@ class ShoppingListController < ApplicationController
     end
   end
   # rubocop:enable Metrics/MethodLength
-
 end
