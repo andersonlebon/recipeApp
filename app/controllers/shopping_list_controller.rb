@@ -2,8 +2,10 @@
 class ShoppingListController < ApplicationController
   def index
     @user = current_user
-    @recipe_foods = Recipe.find(params[:recipe_id]).recipe_foods
-    @inventory_foods = Inventory.find(params[:inventory_id]).inventory_foods
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Inventory.find(params[:inventory_id])
+    @recipe_foods = @recipe.recipe_foods
+    @inventory_foods = @inventory.inventory_foods
     @rf = @recipe_foods.dup
     @list = @rf.map do |recipe_food|
       rfc = recipe_food.dup
