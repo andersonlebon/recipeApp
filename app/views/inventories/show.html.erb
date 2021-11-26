@@ -1,2 +1,32 @@
-<%= render partial: "shared/navigation" %>
-<h1>Inventories show page</h1>
+<div class='container d-flex flex-column p-5'>
+  <h2 class="align-self-center"><%= @inventory.name %></h2>
+  <%= link_to 'Add food', new_user_inventory_inventory_food_path(params[:user_id], params[:id]), class:'btn btn-success btn-sm align-self-end' %>
+  <hr>
+
+  <% if @foods.size >0 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods.each do |food| %>
+        <% inventory_food = @inventory_foods.select {|inv| inv.food_id==food.id} %>
+        <tr>
+          <td><%= food.name%></td>
+          <td><%= inventory_food[0].quantity %> <%= food.measurement_unit %></td>
+          <td>
+            <% if can? :destroy, InventoryFood %>
+              <%= button_to 'Remove', user_inventory_path(params[:user_id], params[:id])+'/inventory_foods/'+inventory_food[0].id.to_s, method: :delete, class:'btn btn-danger btn-sm' %>
+              <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+

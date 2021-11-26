@@ -1,0 +1,35 @@
+<div class="container d-flex flex-column align-items-center p-4">
+  <h1  class="text-secondary align-center mb-3">Shopping list</h1>
+  <div class='d-flex justify-content-between container w-75'>
+    <div class='p-3 f-dlex flex-column'>
+      <div class='h5 text-secondary '>Amount of food to buy: <%= @shopping_list.size %></div>
+      <div class='h5 text-secondary '>Total value of food needed: $<%= @shopping_list.reduce(0) { |sum, food| sum + food[:price] }%> </div>
+    </div>
+    <div class='p-3 d-flex flex-column'>
+      <div class='h5 text-secondary '>Recipe: <%= link_to @recipe.name, user_recipe_path(@user.id, @recipe.id) %></div>
+      <div class='h5 text-secondary '>Inventory: <%= link_to @inventory.name, user_inventory_path(@user.id, @inventory.id) %></div>
+    </div>
+  </div>
+    <% if @shopping_list.size > 0 %>
+    <table class="table w-50">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @shopping_list.each do |food|%>
+        <tr>
+          <td><%= food[:name] %></td>
+          <td><%= food[:quantity] %> <%= food[:measurement_unit] %></td>
+          <td>$<%= food[:price] %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  
+</div>

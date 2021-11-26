@@ -1,1 +1,21 @@
-<h1>Inventories page</h1>
+<div class="container d-flex flex-column p-4">
+<%= link_to 'Create new inventory', new_user_inventory_path(params[:user_id]), class:'btn btn-success btn-sm align-self-end' %>
+<ul class="d-flex flex-column">
+  <% @inventories.each do |inventory| %>
+   <li class="d-flex  border border-muted mt-2 mb-2 p-3 rounded">
+   
+    <div class="d-flex flex-column align-items-center mr-2 w-25">
+     <%= link_to user_inventory_path(inventory.user.id, inventory.id), class:"text-primary" do %>
+      <h2 ><%= inventory.name%></h2>
+     <% end %>
+
+      <% if can? :destroy, inventory %>
+        <%= button_to 'Remove', { :controller => :inventories, :action => :destroy, :id=> inventory.id }, method: :delete, class:'btn btn-outline-danger btn-sm mt-2' %>
+      <% end %>
+
+    </div>
+      <p class="align-self-start p-3 w-75"><%= inventory.description %><h2>
+   </li> 
+   <% end %>
+  </ul>
+<div>

@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     resources :recipes do
       resources :recipe_foods
     end
+
+   
+    resources :shopping_list, only: %i[index show]
+    resources :inventories do
+      resources :inventory_foods, only: %i[new create destroy]
+    end
+
   end
   
   get 'public_recipes', to: 'recipes#public_recipes'
