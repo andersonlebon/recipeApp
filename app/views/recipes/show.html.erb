@@ -26,13 +26,14 @@
                 </div>
                 <div class="col-md-6 my-5">
                   <% if can? :update, @recipe %> 
-                    <%= link_to "Add-ingredient", new_user_recipe_recipe_food_path(current_user, @recipe), class: "btn btn-primary"%>
+                    <%= link_to "Add Food", new_user_recipe_recipe_food_path(current_user, @recipe), class: "btn btn-primary"%>
                   <% end %>
                 </div>
               </div>     
               <div class="border-top border-secondary">
               </div>
               <br/>
+              <table class="flex-row">
               <% if @recipe.recipe_foods.any? %>
                   <tr>
                     <th>Food</th>
@@ -70,6 +71,15 @@
     <span class="close">&times;</span>
     <h4 class="text-center my-3">Generating Shopping list</h4>
       <h4>Select an inventory to use</h4>
-              
+             <%= form_with model: @recipe, url: user_shopping_list_index_path+"?recipe_id=#{params[:id]}&inventory_id=1" do |form| %>
+          <div class="field">
+            <div class="select-option">
+              <%= form.select :inventory_id, @inventories.map { |t| [t.name, t.id]}, {}, class: 'form-control mb-3 mt-3', placeholder:'Inventory name' %>
+            </div>
+          </div>
+        
+        <div class="modal-footer">
+          <%= form.submit "Generate", class: "btn btn-success mt-3" %>
+      <% end %> 
   </div>
 </div>

@@ -1,14 +1,17 @@
 class RecipesController < ApplicationController
+  load_and_authorize_resource
   def index
     @recipes = current_user.recipes
   end
 
   def new
     @recipe = Recipe.new
+
   end
 
   def show
     @recipe = Recipe.where(id: params[:id]).includes(:recipe_foods).take
+    @inventories = current_user.inventories.all
   end
 
   def update
