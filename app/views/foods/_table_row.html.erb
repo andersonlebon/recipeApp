@@ -1,0 +1,10 @@
+<tr>
+    <td><%= food.name %></td>
+    <td><%= food.measurement_unit %></td>
+    <td><%= food.price %></td>
+    <td>
+        <%= link_to user_food_path(current_user, food), method: :delete, class: "" do %>
+            <span class="m-3 badge bg-danger"><span class=""> <i class="fas fa-trash-alt"></i> </span>Delete</span>
+        <% end %>
+    </td>
+</tr>

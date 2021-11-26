@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # resources :foods, only: %i[index show]
  
   resources :users, only: %i[index show] do 
-    resources :foods, only: %i[index show]
+    resources :foods
     resources :recipes, only: %i[index show]
     resources :shopping_list, only: %i[index show]
     resources :inventories do

@@ -2,7 +2,8 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @foods = Food.all
+    @user = current_user
+    @foods = current_user.foods.all
   end
 
   def show
@@ -10,17 +11,22 @@ class FoodsController < ApplicationController
   end
 
   def new
-    @food = Food.new
+    @food = current_user.foods.new
   end
 
   def create
-    @food = Food.new(food_params)
-
+    @food = current_user.foods.create(food_params)
     if @food.save
-      redirect_to @Food
+      redirect_to user_foods_path
     else
       render :new
     end
+  end
+
+  def destroy
+    @food = current_user.foods.find(params[:id])
+    @food.destroy
+    redirect_to user_foods_path
   end
 
   private
