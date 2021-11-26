@@ -1,0 +1,16 @@
+<div class='container d-flex justify-content-center p-3'>
+<%= form_with model: Inventory.new, :url => {:action => :create, :controller => :inventories}, class: 'form-group w-50 d-flex flex-column' do |form| %>
+  <h1 class="text-secondary align-center mb-3">New inventory</h1>
+  <div>
+    <%= form.label :name%>
+    <%= form.text_field :name, class: 'form-control mb-3 mt-3', placeholder:'Inventory name' %>
+    
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control mt-3 mb-3', placeholder:'Inventory description' %>
+  </div>
+
+  <%= form.submit "Create inventory", class:"btn btn-primary align-self-end mt-4 pe-3 ps-3" %>
+  <% end %>
+</div>
