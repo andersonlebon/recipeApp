@@ -1,0 +1,87 @@
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+        <div class="card shadow-2-strong " style="border-radius: 1rem;">
+          <div class="card-body p-2 text-center">
+            <h1><%= @recipe.name %></h1>
+
+            <div class="d-flex flex-column">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Preparation time: <%= @recipe.preparation_time %></p>
+                  <p>Cooking time: <%= @recipe.cooking_time %></p>
+                  <div><%= @recipe.description %></div>
+                </div>
+
+                <div class="col-md-6">
+                  <% if can? :update, @recipe %>
+                    <%= render "public_btn" %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 my-5">
+                  <button type="button" class="btn btn-primary btn-lg" id="shop">Generate Shopping list</button>
+                </div>
+                <div class="col-md-6 my-5">
+                  <% if can? :update, @recipe %> 
+                    <%= link_to "Add Food", new_user_recipe_recipe_food_path(current_user, @recipe), class: "btn btn-primary btn-lg"%>
+                  <% end %>
+                </div>
+              </div>     
+              <div class="border-top border-secondary">
+              </div>
+              <br/>
+              <table class="table table-striped table-hover table-bordered align-middle table-sm my-5">     
+              <thead class="table-dark">
+
+                  <th scope="col">Foods</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                <% @recipe_foods.each do |recipe_food| %>
+                  <tr>
+                    <td><%= recipe_food.food.name %></td>
+                    <td><%= recipe_food.quantity %><%= recipe_food.food.measurement_unit %></td>
+                    <td><%= number_to_currency((recipe_food.food.price).to_i * (recipe_food.quantity).to_i)%></td>
+                    <td class="d-flex justify-content-center">
+                        <%= button_to "Delete", user_recipe_recipe_food_path(current_user, @recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: "r-food-btn btn btn-danger" %>
+                        <%= link_to "Edit", edit_user_recipe_recipe_food_path(current_user, @recipe, recipe_food), class: "btn btn-primary mx-2 r-food-btn" %>
+                    </td>
+                  </tr>
+                  <% end %>
+              </tbody>
+          </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal modal javascript is in app/asset/javascript/custom-->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4 class="text-center my-3">Generating Shopping list</h4>
+      <h4>Select an inventory to use</h4>
+             <%= form_with  url: user_shopping_list_index_path, method: :get do |form| %>
+             <%= form.hidden_field :recipe_id, :value => params[:id] %>
+             <div class="field">
+            <div class="select-option">
+              <%= form.select :inventory_id, @inventories.map { |t| [t.name, t.id]}, {}, class: 'form-control mb-3 mt-3', placeholder:'Inventory name' %>
+            </div>
+          </div>
+        
+        <div class="modal-footer">
+          <%= form.submit "Generate", class: "btn btn-success mt-3" %>
+      <% end %> 
+  </div>
+</div>

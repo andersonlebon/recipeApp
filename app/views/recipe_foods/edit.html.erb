@@ -1,0 +1,26 @@
+<section class="d-flex flex-column align-items-center justify-content-center p-5">
+
+<h2 class="text-secondary p-4">Edit Recipe food</h2>
+
+<%= form_with model: @recipe_food, url: { action: "update"}, local: true do |form| %>
+
+  <div class="field mt-3">
+    <%= form.label :food, class: "label pb-2" %>
+     <div class="select-option">
+        <%= form.select :food_id, current_user.foods.collect {|food| [food.name, food.id] }, { include_blank: true}, class: "form-control" %>
+     </div>
+  </div>
+  <div class="field mt-3">
+   <%= form.label :quantity, class: "label pb-2"  %>
+    <div class="quality">
+      <%= form.number_field :quantity, class: "input", required: true, min: 1, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit  "Edit recipe food", class: "btn btn-primary my-3" %>
+  </div>
+<% end %>
+
+</section>
+
