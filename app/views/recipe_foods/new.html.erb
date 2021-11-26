@@ -1,16 +1,17 @@
-<div class="container py-5 h-100">
+<div class="d-flex flex-column align-items-center justify-content-center p-5">
+<h2 class="text-secondary p-4">Add food</h2>
   <%= form_with model: @recipe_food, url: { action: "create" } do |form| %>
-    <div class="field">
-      <%= form.label :food, class: "" %>
+    <div class="field mt-3 mb-2">
+      <%= form.label :food, class: "label pb-2" %>
       <div class="select-option">
-          <%= form.select :food_id, current_user.foods.collect {|food| [food.name, food.id] }, { include_blank: true} %>
+          <%= form.select :food_id, current_user.foods.collect {|food| [food.name, food.id] }, { include_blank: true}, class: "form-control" %>
       </div>
     </div>
     
     <div class="">
-      <%= form.label :quantity %>
+      <%= form.label :quantity, class: "label pb-2 " %>
       <div>
-        <%= form.text_field :quantity, required: true, min: 0 %>
+        <%= form.number_field :quantity, required: true, min: 0, class: "form-control input" %>
       </div>
     </div>
 
