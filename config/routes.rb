@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show] do 
     resources :foods
     resources :recipes, only: %i[index show]
-    resources :inventories, only: %i[index show]
+    resources :shopping_list, only: %i[index show]
+    resources :inventories do
+      resources :inventory_foods, only: %i[new create destroy]
+    end
+
   end
 end
