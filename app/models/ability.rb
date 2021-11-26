@@ -9,16 +9,15 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+
+      can :edit, Recipe, user: user
+      can :update, Recipe, user: user
+      can :manage, Recipe, user: user
+
       can :manage, Inventory, user_id: user.id
       can :manage, InventoryFood, user_id: user.id
 
-      cannot :destroy, Recipe do |recipe|
-        recipe.user_id != user.id
-      end
-
-      can :read, Recipe do |recipe|
-        recipe.public == true || recipe.user_id == user.id
-      end
+      can :manage, Food, user: user
     end
   end
 end

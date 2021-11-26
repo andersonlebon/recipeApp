@@ -4495,6 +4495,11 @@
   "resolved" "https://registry.npmjs.org/mdast-util-to-string/-/mdast-util-to-string-2.0.0.tgz"
   "version" "2.0.0"
 
+"mdbootstrap@^4.20.0":
+  "integrity" "sha512-eIxaYsvHct2BKqkJWphh6j7nFQXHh9NjbbN7a+dctfrVsKaydNW5XpKIxmq2tDSb9+XYGm9hK7hMTlHgeV6wdw=="
+  "resolved" "https://registry.npmjs.org/mdbootstrap/-/mdbootstrap-4.20.0.tgz"
+  "version" "4.20.0"
+
 "mdn-data@2.0.14":
   "integrity" "sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow=="
   "resolved" "https://registry.npmjs.org/mdn-data/-/mdn-data-2.0.14.tgz"
